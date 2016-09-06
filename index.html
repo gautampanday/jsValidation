@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="keyword" content="website Design, UI Design, UX Design, PSD to HTML,Angular Developer, Brand Identity, website development, responsive design, parallax design">
+  <meta name="description" content="I am Gautam Pandey Freelance Web Designer/Developer. I craft handsome sites & stunning web portals that empower your business.">
+  <meta name="author" content="Gautam Pandey- Web Designer Developer">
+  <link href="assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="assets/js/lib/jquery-1.11.0.min.js"></script>
+</head>
+<title>
+  Gautam Pandey | home
+</title>
+<body>
+  <section style="padding:50px">
+  <h3>Validation Code for EMAIL, PHONE, PINCODE, NOT NULL, REQUIRED</h3>
+  <br>
+    <div class="form-group row">
+      <label class="text-left col-md-2 col-sm-3 col-xs-12">Email<span class="required">*</span>
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input type="email" id="email" role="email" class="form-control col-md-7 col-xs-12 focus-valid" >
+        
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="text-left col-md-2 col-sm-3 col-xs-12">Mobile <span class="required">*</span>
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input type="number" id="mobile" required="required" role="phone" class="form-control col-md-7 col-xs-12 focus-valid">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="text-left col-md-2 col-sm-3 col-xs-12">Pincode<span class="required">*</span>
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input type="number" id="pincode" required="required" role="pincode" class="form-control col-md-7 col-xs-12 focus-valid" >
+        
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="text-left col-md-2 col-sm-3 col-xs-12">Username <span class="required">*</span>
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input type="text" id="username" required="required" class="form-control col-md-7 col-xs-12">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="text-left col-md-2 col-sm-3 col-xs-12">Password <span class="required">*</span>
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input type="password" id="password" required="required" class="form-control col-md-7 col-xs-12">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="text-left col-md-2 col-sm-3 col-xs-12">Full Name
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input type="text" class="form-control col-md-7 col-xs-12" id="name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-2 no-pad">
+        <input type="button" id="submitTest" class="btn btn-success" value="Submit">
+      </div>
+    </div>
+
+
+  </section>
+  <script>
+    $(document).ready(function(){
+      $('#submitTest').on('click',function(){
+        $('body').find(".text-danger").remove();
+       $('body').find('input[type="text"], input[type="password"], input[type="file"], input[type="number"], select').each(function(){
+        var id=$(this).attr("id");
+         if($(this).val() == "" && $(this).prop('required'))
+         {
+
+          $(this).css("border","1px solid red");
+             // var a=$(this).closest(".text-danger").hasClass('text-danger');
+             $(this).after("<p class='text-danger'>Field is required</p>");
+             
+         }
+         else if($(this).prop('required')){
+          var getId=$(this).attr("id");
+          var getIdval= $("#"+getId).val();
+          $(this).css("border","1px solid red");
+          if(getIdval !='null'){
+            $("#"+getId).css("border","1px solid #ccc");
+          }
+          else{
+            $(this).css("border","1px solid red");
+            $(this).after("<p class='text-danger'>Field is required</p>");
+          }
+          
+         }
+         else {
+          $(this).css("border","1px solid #ccc");
+         }
+
+     });
+
+   });
+      $(document).on('blur', '.focus-valid', function() {
+        $('body').find(".text-danger").remove();
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        var getId = $(this).attr('role');
+        var mobileNumberCount = $(this).val();
+        var countLength = $(this).val();
+        console.log("countLength ",countLength);
+        if((mobileNumberCount.length > 10 || mobileNumberCount.length < 10) && getId =='phone'){
+          $(this).css("border","1px solid red");
+          $(this).after("<p class='text-danger'>Mobile number should be 10 Digit only</p>");
+        }
+        else if(getId =='email' && reg.test($(this).val()) == false){
+          $(this).css("border","1px solid red");
+          $(this).after("<p class='text-danger'>Please enter valid email id</p>");
+        }
+        else if(getId =='pincode' && (countLength.length > 6 || countLength.length < 6)){
+          $(this).css("border","1px solid red");
+          $(this).after("<p class='text-danger'>Please enter 6 digit valid pincode</p>");
+        }
+        else{
+          $(this).css("border","1px solid #ccc");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
